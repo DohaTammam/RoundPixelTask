@@ -1,0 +1,18 @@
+.welcomePage {
+    /* background-color: rgb(250, 249, 249); */
+    background: #fffdfd;
+    height: 100vh;
+}
+
+.welcomeCard {
+    border: 2px solid lightblue;
+    box-shadow: 6px 7px 21px 0px rgba(37, 156, 224, 0.59);
+    -webkit-box-shadow: 6px 7px 21px 0px rgba(37, 156, 224, 0.59);
+    -moz-box-shadow: 6px 7px 21px 0px rgba(37, 156, 224, 0.59);
+    border-radius: 25px;
+    padding: 80px;
+    margin: 100px;
+    width: 100%;
+    color:rgb(60, 131, 189);
+    font-size: medium;
+}

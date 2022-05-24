@@ -1,0 +1,122 @@
+<div class="container">
+  <div class="forms-container">
+    <div class="signin-signup">
+      <form [formGroup]="signUpForm" (ngSubmit)="submitReactiveForm()" class="sign-in-form">
+        <h2 class="title">Sign Up</h2>
+
+        <!--UserName Input-->
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text"  id="inputUserName" name="userName" formControlName="userName"
+            placeholder="Username" />
+        </div>
+        <!-- UserName Controls -->
+        <small class="text-danger"
+          *ngIf="(submitFormControls.userName.touched || submitted) && submitFormControls.userName.errors?.required">
+          this field is required
+        </small>
+        <span class="text-danger" *ngIf="submitFormControls.userName.errors?.pattern">
+          please use english chararcter only
+        </span>
+
+        <!-- Email Input -->
+        <div class="input-field ps-5">
+          <input type="email" id="inputEmail" name="email" formControlName="email"
+            placeholder="Email">
+        </div>
+        <!-- Email Input Controls -->
+        <small class="text-danger"
+          *ngIf="(submitFormControls.email.touched || submitted) && submitFormControls.email.errors?.required">
+          this field is required
+        </small>
+
+        <!--password Input-->
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="inputPassword" name="password" formControlName="password"
+            placeholder="Password" />
+        </div>
+        <!-- Password Controls -->
+        <small class="text-danger"
+          *ngIf="(submitFormControls.password.touched || submitted) && submitFormControls.password.errors?.required">
+          Password is required
+        </small>
+        <small class="text-danger"
+          *ngIf="submitFormControls.password.touched && submitFormControls.password.errors?.pattern">
+          Password Must Be At Least 8 characters, 1 uppercase letter, 1 lowercase
+          letter and 1 number
+        </small>
+
+        <!--Confirm password Input-->
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="inputConfirmPassword" name="confirmPassword"
+            formControlName="confirmPassword" placeholder="Confirm Password" />
+        </div>
+        <!-- Confirm Password Controls -->
+        <small class="text-danger"
+          *ngIf="(submitFormControls.confirmPassword.touched || submitted) && submitFormControls.confirmPassword.errors?.required">
+          this field is required
+        </small>
+        <small class="text-danger"
+          *ngIf="submitFormControls.confirmPassword.touched && submitFormControls.confirmPassword.errors?.passwordMismatch">
+          Passwords doesn't match
+        </small>
+
+
+        <div class="form-row">
+          <!-- Nationality Input -->
+          <div class="input-field">
+            <select id="inputState" [(value)]="Country" class="input-field w-100">
+              <option *ngFor="let country of countries" >{{country.countryName}}</option>
+            </select>
+          </div>
+          <!-- Nationality Input Controls -->
+          <div *ngIf="submitFormControls.nationality.touched && !submitFormControls.nationality.valid">
+            <small class="text-danger" *ngIf="submitFormControls.nationality.errors.required">
+              this field is requierd
+            </small>
+          </div>
+        </div>
+
+        <!--Submit Button-->
+        <button type="submit" class="btn btn-primary solid" >Sign Up</button>
+        <!-- [disabled]="!signUpForm.valid" -->
+
+
+        <!-- <p class="social-text">Or Sign in with social platforms</p>
+          <div class="social-media">
+            <a href="#" class="social-icon">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="#" class="social-icon">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+          </div> -->
+      </form>
+    </div>
+  </div>
+
+  <div class="panels-container">
+    <div class="panel left-panel">
+      <div class="content">
+        <h3>New here ?</h3>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+          ex ratione. Aliquid!
+        </p>
+        <button class="btn transparent" id="sign-up-btn">
+          Login
+        </button>
+      </div>
+      <!-- <img src="assets/log.svg" class="image" alt="" /> -->
+    </div>
+    
+  </div>
+</div>
