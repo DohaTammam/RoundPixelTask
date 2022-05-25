@@ -20,7 +20,8 @@
         </span>
 
         <!-- Email Input -->
-        <div class="input-field ps-5">
+        <div class="input-field">
+          <i class="fas fa-user"></i>
           <input type="email" id="inputEmail" name="email" formControlName="email"
             placeholder="Email">
         </div>
@@ -66,9 +67,9 @@
 
         <div class="form-row">
           <!-- Nationality Input -->
-          <div class="input-field">
+          <div >
             <select id="inputState" [(value)]="Country" class="input-field w-100">
-              <option *ngFor="let country of countries" >{{country.countryName}}</option>
+              <option *ngFor="let country of countries" [(value)]="Country">{{country.countryName}}</option>
             </select>
           </div>
           <!-- Nationality Input Controls -->
@@ -80,11 +81,10 @@
         </div>
 
         <!--Submit Button-->
-        <button type="submit" class="btn btn-primary solid" >Sign Up</button>
+        <button type="submit" class="btn btn-primary solid">Sign Up</button>
         <!-- [disabled]="!signUpForm.valid" -->
 
-
-        <!-- <p class="social-text">Or Sign in with social platforms</p>
+        <p class="social-text">Or Sign in with social platforms</p>
           <div class="social-media">
             <a href="#" class="social-icon">
               <i class="fab fa-facebook-f"></i>
@@ -98,7 +98,7 @@
             <a href="#" class="social-icon">
               <i class="fab fa-linkedin-in"></i>
             </a>
-          </div> -->
+          </div>
       </form>
     </div>
   </div>
@@ -117,6 +117,5 @@
       </div>
       <!-- <img src="assets/log.svg" class="image" alt="" /> -->
     </div>
-    
   </div>
 </div>
