@@ -17,12 +17,13 @@ export class SignupComponent implements OnInit {
   countries: any[];
   subscription: any
   submitted = false;
-  userIp: any;
-  Country: string = '';
+  userIp: string;
+  Country: any;
 
   constructor(private myApiService: MyApisService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
+
     this.signUpForm = new FormGroup({
       userName: new FormControl("", [Validators.pattern('[a-zA-Z]*'), Validators.required]),
       email: new FormControl("", [Validators.email, Validators.required]),
@@ -43,16 +44,19 @@ export class SignupComponent implements OnInit {
     });
 
     this.myApiService.getUserIp().subscribe((ip) => {
-      this.userIp = ip;
-      console.log("ip",this.userIp)
+      // console.log("ip---->",this.userIp)
+      this.userIp = ip.ip;
+      this.dataService.shareIpAddress = this.userIp;
+      localStorage.setItem('ipAddress', `${this.userIp}`)
     }, (error) => {
       console.log(error);
     });
 
-    this.myApiService.getGeoLocation(this.userIp.ip).subscribe(
+    this.myApiService.getGeoLocation(this.dataService.shareIpAddress).subscribe(
       (data) => {
-        console.log("dataaaaa", data);
-        this.Country = data.Country;
+        // console.log("ip---->?????",this.dataService.shareIpAddress)
+        // console.log("dataaaaa", data.country_name);
+        this.Country = data.country_name;
       },
       (err) => {
         console.log(err);
@@ -78,8 +82,7 @@ export class SignupComponent implements OnInit {
     localStorage.setItem('userName', `${this.submitFormControls.userName?.value}`)
     this.router.navigate(['/welcomeCom']);
 
-    // this.dataService.shareIpAddress = this.submitFormControls.ipAddress?.value;
-    // localStorage.setItem('ipAddress', `${this.submitFormControls.ipAddress?.value}`)
+    
   }
 
   MatchPassword(password: string, confirmPassword: string) {
