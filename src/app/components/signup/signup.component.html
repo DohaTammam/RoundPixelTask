@@ -2,13 +2,12 @@
   <div class="forms-container">
     <div class="signin-signup">
       <form [formGroup]="signUpForm" (ngSubmit)="submitReactiveForm()" class="sign-in-form">
-        <h2 class="title">Sign Up</h2>
+        <h2 class="title" >Sign Up</h2>
 
         <!--UserName Input-->
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="text"  id="inputUserName" name="userName" formControlName="userName"
-            placeholder="Username" />
+          <input type="text" id="inputUserName" name="userName" formControlName="userName" placeholder="Username" />
         </div>
         <!-- UserName Controls -->
         <small class="text-danger"
@@ -22,8 +21,7 @@
         <!-- Email Input -->
         <div class="input-field">
           <i class="fas fa-user"></i>
-          <input type="email" id="inputEmail" name="email" formControlName="email"
-            placeholder="Email">
+          <input type="email" id="inputEmail" name="email" formControlName="email" placeholder="Email">
         </div>
         <!-- Email Input Controls -->
         <small class="text-danger"
@@ -34,8 +32,7 @@
         <!--password Input-->
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" id="inputPassword" name="password" formControlName="password"
-            placeholder="Password" />
+          <input type="password" id="inputPassword" name="password" formControlName="password" placeholder="Password" />
         </div>
         <!-- Password Controls -->
         <small class="text-danger"
@@ -51,8 +48,8 @@
         <!--Confirm password Input-->
         <div class="input-field">
           <i class="fas fa-lock"></i>
-          <input type="password" id="inputConfirmPassword" name="confirmPassword"
-            formControlName="confirmPassword" placeholder="Confirm Password" />
+          <input type="password" id="inputConfirmPassword" name="confirmPassword" formControlName="confirmPassword"
+            placeholder="Confirm Password" />
         </div>
         <!-- Confirm Password Controls -->
         <small class="text-danger"
@@ -67,7 +64,7 @@
 
         <div class="form-row">
           <!-- Nationality Input -->
-          <div >
+          <div>
             <select id="inputState" [(value)]="Country" class="input-field w-100">
               <option *ngFor="let country of countries" [(value)]="Country">{{country.countryName}}</option>
             </select>
@@ -84,21 +81,21 @@
         <button type="submit" class="btn btn-primary solid">Sign Up</button>
         <!-- [disabled]="!signUpForm.valid" -->
 
-        <p class="social-text">Or Sign in with social platforms</p>
-          <div class="social-media">
-            <a href="#" class="social-icon">
-              <i class="fab fa-facebook-f"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-google"></i>
-            </a>
-            <a href="#" class="social-icon">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-          </div>
+        <!-- <p class="social-text">Or Sign in with social platforms</p> -->
+        <div class="social-media">
+          <a href="#" class="social-icon">
+            <i class="fab fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-twitter"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-google"></i>
+          </a>
+          <a href="#" class="social-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </a>
+        </div>
       </form>
     </div>
   </div>
