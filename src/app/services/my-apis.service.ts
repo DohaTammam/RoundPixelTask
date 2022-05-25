@@ -28,7 +28,7 @@ export class MyApisService {
   }
 
   
-  getUserIp(){
+  getUserIp(): Observable<any>{
     return this.http.get('https://api.ipify.org/?format=json');
   }
 

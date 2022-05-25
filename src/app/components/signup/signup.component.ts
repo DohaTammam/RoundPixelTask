@@ -17,16 +17,17 @@ export class SignupComponent implements OnInit {
   countries: any[];
   subscription: any
   submitted = false;
-  userIp: any;
-  Country: string = '';
+  userIp: string;
+  Country: any;
 
   constructor(private myApiService: MyApisService, private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
+
     this.signUpForm = new FormGroup({
       userName: new FormControl("", [Validators.pattern('[a-zA-Z]*'), Validators.required]),
       email: new FormControl("", [Validators.email, Validators.required]),
-      password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]),
+      password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*?[A-Z])[\w\s]+(?=.*?[a-z])(?=.*?[0-9]).{8,}$')]),
       confirmPassword: new FormControl("", [Validators.minLength(8)]),
       ipAddress: new FormControl("", [Validators.required]),
       nationality: new FormControl("", [Validators.required])
@@ -43,15 +44,18 @@ export class SignupComponent implements OnInit {
     });
 
     this.myApiService.getUserIp().subscribe((ip) => {
-      this.userIp = ip;
-      console.log(ip)
+      // console.log("ip---->",this.userIp)
+      this.userIp = ip.ip;
+      this.dataService.shareIpAddress = this.userIp;
+      localStorage.setItem('ipAddress', `${this.userIp}`)
     }, (error) => {
       console.log(error);
     });
 
-    this.myApiService.getGeoLocation(this.userIp).subscribe(
+    this.myApiService.getGeoLocation(this.dataService.shareIpAddress).subscribe(
       (data) => {
-        console.log("dataaaaa", data.country_name);
+        // console.log("ip---->?????",this.dataService.shareIpAddress)
+        // console.log("dataaaaa", data.country_name);
         this.Country = data.country_name;
       },
       (err) => {
@@ -72,12 +76,13 @@ export class SignupComponent implements OnInit {
   submitReactiveForm() {
     this.submitted = true;
     console.log(this.signUpForm.value);
+
+    //send userName value to service 
     this.dataService.shareUserName = this.submitFormControls.userName?.value;
     localStorage.setItem('userName', `${this.submitFormControls.userName?.value}`)
     this.router.navigate(['/welcomeCom']);
 
-    this.dataService.shareIpAddress = this.submitFormControls.ipAddress?.value;
-    localStorage.setItem('ipAddress', `${this.submitFormControls.ipAddress?.value}`)
+    
   }
 
   MatchPassword(password: string, confirmPassword: string) {
