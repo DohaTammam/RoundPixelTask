@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class DataService {
   shareUserName:any=localStorage.getItem('userName') ;
   shareIpAddress:any=localStorage.getItem('ipAddress') ;
+  isSignedUp:any=localStorage.getItem('signUp') ;
   constructor() { }
 }

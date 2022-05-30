@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map, mergeMap } from 'rxjs/operators';
 
 /* use those apis to get user geolocations and nationality all apis accept get request
 https://backofficeapi.online-tkt.com/api/GetAllCountriesByLangName?LangCode=en
@@ -18,22 +19,22 @@ https://ipapi.co/${ip-adress}/json/
 })
 export class MyApisService {
 
-  userIp ='';
+  merge_map : Observable <any>;
+
   constructor(private http : HttpClient) { }
 
   getCountries():Observable<any>{
-     return this.http.get(
-      'https://backofficeapi.online-tkt.com/api/GetAllCountriesByLangName?LangCode=en'
-    );
+     return this.http.get('https://backofficeapi.online-tkt.com/api/GetAllCountriesByLangName?LangCode=en')
   }
 
   
   getUserIp(): Observable<any>{
-    return this.http.get('https://api.ipify.org/?format=json');
+    return this.http.get('https://api.ipify.org/?format=json')
   }
 
   
   getGeoLocation(ipAddress: any): Observable<any> {
     return this.http.get(`https://ipapi.co/${ipAddress}/json/`);
   }
+  
 }
