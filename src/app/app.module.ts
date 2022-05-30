@@ -8,6 +8,8 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { ErrorPageNotFoundComponent } from './components/error-page-not-found/error-page-not-found.component';
+import { SigninComponent } from './components/signin/signin.component';
 
 
 
@@ -15,7 +17,9 @@ import { AppRoutingModule } from './app-routing.module';
   declarations: [
     AppComponent,
     SignupComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ErrorPageNotFoundComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
